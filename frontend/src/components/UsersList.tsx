@@ -1,10 +1,10 @@
-import { Users } from "../utilities/types";
+import { Users } from "../services/api/usersTypes";
 import { UserDetails } from "./ui/UserDetails";
 
-export const UsersList = ({ usersArray }: { usersArray?: Users[] }) => {
+export const UsersList = ({ usersArray }: { usersArray: Users[] }) => {
 	return (
 		<div>
-			{usersArray!.map((user: Users) => {
+			{usersArray.map((user: Users) => {
 				return (
 					<UserDetails
 						id={user.id}

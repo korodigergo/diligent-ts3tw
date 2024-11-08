@@ -1,4 +1,4 @@
-import { Users } from "../../utilities/types";
+import { Users } from "../../services/api/usersTypes";
 
 export const UserDetails = ({ id, name, email }: Users) => {
 	return (

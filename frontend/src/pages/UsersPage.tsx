@@ -1,34 +1,24 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Users } from "../utilities/types";
+// import { Users } from "../utilities/types";
 import { Error } from "../components/Error";
 import { UsersList } from "../components/UsersList";
+import useFetchUsers from "../hooks/useFetchUsers";
+
 const UsersPage = () => {
 	const queryClient = useQueryClient();
 
-	const {
-		data: users,
-		isError,
-		isPending,
-		error,
-	} = useQuery({
-		queryKey: ["users"],
-		queryFn: async () => {
-			const response = await fetch("http://localhost:4000/users");
-			const data = (await response.json()) as Users[];
-			return data;
-		},
-	});
+	const { data: users, isError, isPending, error } = useFetchUsers();
 
 	if (isError) {
-		return <Error errorMsg={error} />;
+		return <Error errorMsg={error as Error} />;
 	}
 	if (isPending) {
-		<div>Loading...</div>;
+		return <div>Loading...</div>;
 	}
 
 	return (
 		<>
-			<UsersList usersArray={users} />
+			<UsersList usersArray={users!} />
 		</>
 	);
 };
