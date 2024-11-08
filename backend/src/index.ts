@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import cors from "cors"
 
 const app: Express = express();
-const port = 3000;
+const port = 4000;
 
 app.use(cors());
 app.use(express.json());
