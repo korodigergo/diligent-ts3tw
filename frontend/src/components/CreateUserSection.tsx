@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useCreateNewUser from "../hooks/useCreateNewUser";
+import { CustomInput } from "./ui/CustomInput";
 
 export const CreateUserSection = () => {
 	const [newUserName, setNewUserName] = useState<string>("");
@@ -16,29 +17,36 @@ export const CreateUserSection = () => {
 	return (
 		<section>
 			<h3>Create a User Here!</h3>
-			<label htmlFor='name'>Name:</label>
-			<br />
-			<input
-				type='text'
-				id='name'
-				value={newUserName}
-				onChange={(e) => {
+			<CustomInput
+				inputValue={newUserName}
+				onChangeHandler={(e) => {
 					setNewUserName(e.target.value);
 				}}
-			/>{" "}
+			>
+				Name:
+			</CustomInput>
 			<br />
-			<label htmlFor='email'>Email:</label>
-			<br />
-			<input
-				type='text'
-				id='email'
-				value={newUserEmail}
-				onChange={(e) => {
+			<CustomInput
+				inputValue={newUserEmail}
+				onChangeHandler={(e) => {
 					setNewUserEmail(e.target.value);
 				}}
-			/>{" "}
+			>
+				Email:
+			</CustomInput>
 			<br />
-			<button onClick={handleCreateUsers}>Create User</button>
+			<button
+				disabled={createMutation.isPending}
+				onClick={handleCreateUsers}
+			>
+				Create User
+			</button>
+			{createMutation.isSuccess && (
+				<h3 style={{ color: "green" }}>User was sucessfully created!</h3>
+			)}
+			{createMutation.isError && (
+				<h3 style={{ color: "red" }}>Something went wrong!</h3>
+			)}
 		</section>
 	);
 };
