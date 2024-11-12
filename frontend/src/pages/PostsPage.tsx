@@ -27,6 +27,7 @@ const PostsPage = () => {
     },
   });
 
+  /// CREATE
   const createPostMutation = useMutation({
 		mutationFn: async (newPost: Post) => {
 			const response = await fetch("http://localhost:4000/posts", {
@@ -49,9 +50,28 @@ const PostsPage = () => {
 
   const handleCreatePost = () => {
 		createPostMutation.mutate({ id: 30, title, content });
+
 	};
 
+  /// DELETE
+  const deletePostMutation = useMutation({
+		mutationFn: async (id: number) => {
+			await fetch(`http://localhost:4000/posts/${id}`, {
+				method: "DELETE",
+			});
+      
+      
+			
+		},
+		onSuccess:  () => {
 
+			queryClient.invalidateQueries({
+				queryKey: ["posts"],
+			});
+		},
+	});
+
+  
   if (isLoading) return <h1>Loading….</h1>;
   if (isError) return <h1>Error loading data!!!</h1>;
 
@@ -65,7 +85,8 @@ const PostsPage = () => {
       <div>
         {posts?.map((post) => (
           <div key={post.id}>
-            <PostComponent post={post}/>
+            <PostComponent post={post} />
+            <button onClick={() => deletePostMutation.mutate(post.id)}>delete</button>
           </div>
         ))}
       </div>
