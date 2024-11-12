@@ -14,3 +14,9 @@ export const createUser = async (newUser: Pick<Users, "name" | "email">) => {
 		body: JSON.stringify(newUser),
 	});
 };
+
+export const deleteUser = async (id: number) => {
+	return fetch(`http://localhost:4000/users/${id}`, {
+		method: "DELETE",
+	});
+};
