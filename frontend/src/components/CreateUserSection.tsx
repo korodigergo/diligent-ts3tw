@@ -14,6 +14,20 @@ export const CreateUserSection = () => {
 		setNewUserEmail("");
 	};
 
+	const showSuccessMessage = () => {
+		setTimeout(() => {
+			createMutation.reset();
+		}, 1500);
+		return <h3 style={{ color: "green" }}>User was sucessfully created!</h3>;
+	};
+
+	const showErrorMessage = () => {
+		setTimeout(() => {
+			createMutation.reset();
+		}, 1500);
+		return <h3 style={{ color: "red" }}>Something went wrong!</h3>;
+	};
+
 	return (
 		<section>
 			<h3>Create a User Here!</h3>
@@ -41,12 +55,9 @@ export const CreateUserSection = () => {
 			>
 				Create User
 			</button>
-			{createMutation.isSuccess && (
-				<h3 style={{ color: "green" }}>User was sucessfully created!</h3>
-			)}
-			{createMutation.isError && (
-				<h3 style={{ color: "red" }}>Something went wrong!</h3>
-			)}
+			{createMutation.isSuccess && showSuccessMessage()}
+
+			{createMutation.isError && showErrorMessage()}
 		</section>
 	);
 };
