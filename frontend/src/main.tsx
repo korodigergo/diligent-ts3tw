@@ -10,6 +10,7 @@ import UsersPage from './pages/UsersPage.tsx';
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
+  
   {
     path: "/",
     element: <App />,
@@ -26,12 +27,22 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {future: {
+  v7_fetcherPersist: true,
+  v7_normalizeFormMethod: true,
+  v7_partialHydration: true,
+  v7_skipActionErrorRevalidation: true,
+  v7_relativeSplatPath: true,
+},
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} future={{
+    v7_startTransition: true,
+  }}
+/>
     </QueryClientProvider>
   </StrictMode>,
 )

@@ -1,8 +1,10 @@
+
 interface Post {
   id: number;
   title: string;
   content: string;
 }
+
 
 const PostComponent = ({post} : {post: Post}) => {
   return (
