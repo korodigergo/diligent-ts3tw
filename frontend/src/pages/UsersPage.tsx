@@ -1,12 +1,9 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-// import { Users } from "../utilities/types";
-import { Error } from "../components/Error";
+import { Error } from "../components/ui/ErrorMessage";
 import { UsersList } from "../components/UsersList";
 import useFetchUsers from "../hooks/useFetchUsers";
+import { CreateUserSection } from "../components/CreateUserSection";
 
 const UsersPage = () => {
-	const queryClient = useQueryClient();
-
 	const { data: users, isError, isPending, error } = useFetchUsers();
 
 	if (isError) {
@@ -18,6 +15,8 @@ const UsersPage = () => {
 
 	return (
 		<>
+			<CreateUserSection />
+			<hr />
 			<UsersList usersArray={users!} />
 		</>
 	);

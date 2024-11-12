@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Users } from "../services/api/usersTypes";
 import { fetchUsers } from "../services/api/usersRequests";
 

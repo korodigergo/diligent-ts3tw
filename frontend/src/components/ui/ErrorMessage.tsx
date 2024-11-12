@@ -1,7 +1,7 @@
 export const Error = ({ errorMsg }: { errorMsg: Error }) => {
 	return (
-		<div>
+		<section>
 			<h1>{errorMsg.message}</h1>
-		</div>
+		</section>
 	);
 };
