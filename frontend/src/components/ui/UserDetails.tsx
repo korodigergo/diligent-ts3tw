@@ -2,7 +2,7 @@ import { Users } from "../../services/api/usersTypes";
 
 type UserDetailsProps = Users & {
 	deleteHandler: () => void;
-	editHandler?: () => void;
+	switchToEdithandler: () => void;
 };
 
 export const UserDetails = ({
@@ -10,6 +10,7 @@ export const UserDetails = ({
 	name,
 	email,
 	deleteHandler,
+	switchToEdithandler,
 }: UserDetailsProps) => {
 	return (
 		<div>
@@ -17,7 +18,7 @@ export const UserDetails = ({
 			<p>name: {name}</p>
 			<p>email: {email}</p>
 			<div>
-				<button>edit</button>
+				<button onClick={switchToEdithandler}>edit</button>
 				<button onClick={deleteHandler}>delete</button>
 			</div>
 		</div>

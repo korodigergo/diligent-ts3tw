@@ -1,4 +1,4 @@
-type CustomInputProps = {
+export type CustomInputProps = {
 	children: React.ReactNode;
 	inputValue: string;
 	onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
