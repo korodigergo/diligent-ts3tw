@@ -1,13 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createUser } from "../services/api/usersRequests";
 import { Users } from "../services/api/usersTypes";
+import { editUser } from "../services/api/usersRequests";
 
-const useCreateNewUser = () => {
+const useEditUser = () => {
 	const queryClient = useQueryClient();
-
 	return useMutation({
-		mutationFn: async (newUser: Pick<Users, "name" | "email">) => {
-			await createUser(newUser);
+		mutationFn: async ({ id, name, email }: Users) => {
+			await editUser({ id, name, email });
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
@@ -17,4 +16,4 @@ const useCreateNewUser = () => {
 	});
 };
 
-export default useCreateNewUser;
+export default useEditUser;

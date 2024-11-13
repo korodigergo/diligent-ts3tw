@@ -1,12 +1,11 @@
 import { Users } from "../../services/api/usersTypes";
 
-type UserDetailsProps = Users & {
+type UserDetailsProps = Pick<Users, "name" | "email"> & {
 	deleteHandler: () => void;
 	switchToEdithandler: () => void;
 };
 
 export const UserDetails = ({
-	id,
 	name,
 	email,
 	deleteHandler,
@@ -14,7 +13,6 @@ export const UserDetails = ({
 }: UserDetailsProps) => {
 	return (
 		<div>
-			<p>id: {id}</p>
 			<p>name: {name}</p>
 			<p>email: {email}</p>
 			<div>

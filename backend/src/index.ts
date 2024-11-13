@@ -23,11 +23,13 @@ const users: User[] = [
 	{ id: 1, name: "John Doe", email: "johndoe@example.com" },
 	{ id: 2, name: "Jane Smith", email: "janesmith@example.com" },
 ];
+let usersArrayLength = users.length;
 
 const posts: Post[] = [
 	{ id: 1, title: "Post 1", content: "Lorem ipsum..." },
 	{ id: 2, title: "Post 2", content: "Dolor sit amet..." },
 ];
+let postsArrayLength = posts.length;
 
 app.get("/users", (req: Request, res: Response) => {
 	res.json(users);
@@ -48,8 +50,9 @@ app.get("/users/:id", (req: Request, res: Response) => {
 });
 
 app.post("/users", (req: Request, res: Response) => {
+	usersArrayLength++;
 	const newUser: User = {
-		id: users.length + 1,
+		id: usersArrayLength,
 		...req.body,
 	};
 	users.push(newUser);
@@ -57,8 +60,9 @@ app.post("/users", (req: Request, res: Response) => {
 });
 
 app.post("/posts", (req: Request, res: Response) => {
+	postsArrayLength++;
 	const newPost: Post = {
-		id: posts.length + 1,
+		id: postsArrayLength,
 		...req.body,
 	};
 	posts.push(newPost);
@@ -98,6 +102,8 @@ app.delete("/users/:id", (req: Request, res: Response) => {
 	const userIndex = users.findIndex((user) => user.id === userId);
 
 	users.splice(userIndex, 1);
+	console.log(users);
+	console.log(users.length);
 
 	res.sendStatus(204);
 });

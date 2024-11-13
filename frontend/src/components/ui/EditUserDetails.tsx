@@ -1,7 +1,6 @@
 import { CustomInput } from "./CustomInput";
 
 type EditUserDetailsProps = {
-	id: number;
 	editHandler: () => void;
 	nameInputValue: string;
 	nameOnChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -10,7 +9,6 @@ type EditUserDetailsProps = {
 };
 
 export const EditUserDetails = ({
-	id,
 	editHandler,
 	nameInputValue,
 	emailInputValue,
@@ -19,7 +17,6 @@ export const EditUserDetails = ({
 }: EditUserDetailsProps) => {
 	return (
 		<div>
-			<p>{id}</p>
 			<CustomInput
 				inputValue={nameInputValue}
 				onChangeHandler={nameOnChangeHandler}

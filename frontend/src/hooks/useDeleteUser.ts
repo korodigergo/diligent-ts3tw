@@ -6,9 +6,7 @@ const useDeleteUser = () => {
 
 	return useMutation({
 		mutationFn: async (id: number) => {
-			const response = await deleteUser(id);
-			const data = await response.json();
-			console.log(data);
+			await deleteUser(id);
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
